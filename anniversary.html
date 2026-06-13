@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KADROkurs — Köklü Mirası Geleceğe Taşıyoruz</title>
+
+<template id="__bundler_thumbnail" data-bg-color="#E6EFF4">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DCEAF5"/><stop offset="1" stop-color="#FCEFC9"/></linearGradient></defs>
+    <rect width="1200" height="800" fill="url(#g)"/>
+    <text x="100" y="360" fill="#7B1D1D" font-family="sans-serif" font-weight="800" font-size="78">Köklü Mirası</text>
+    <text x="100" y="450" fill="#7B1D1D" font-family="sans-serif" font-weight="800" font-size="78">Geleceğe Taşıyoruz</text>
+    <circle cx="900" cy="420" r="210" fill="#fff" opacity="0.85"/>
+    <text x="900" y="430" fill="#7B1D1D" font-family="serif" font-weight="800" font-size="150" text-anchor="middle">24</text>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+<script src="image-slot.js"></script>
+
+<style>
+:root{
+  --bordo:#7B1D1D;--bordo-hi:#5E1414;--bordo-lo:#9A2A2A;
+  --gold:#C39A4C;--gold-deep:#9C7628;
+  --ink:#243140;--muted:#5C6573;--faint:#93A0AD;
+  --paper:#FFFFFF;--hair:#E3E8EC;
+  --shadow:0 1px 2px rgba(36,49,64,.04),0 12px 32px rgba(36,49,64,.08);
+  --shadow-bordo:0 8px 22px rgba(123,29,29,.2);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;position:relative;
+  background:linear-gradient(115deg,#DCEAF5 0%,#E9F0F1 28%,#F6F0E2 62%,#FBEFCB 100%);
+}
+
+/* decorative marks */
+.deco{position:absolute;z-index:0;pointer-events:none;color:var(--gold);opacity:.32;font-weight:700;}
+.deco.x{font-size:26px;}
+.deco.o{width:16px;height:16px;border:3px solid var(--gold);border-radius:50%;opacity:.22;}
+.deco.b{width:12px;height:12px;border:3px solid #8FB8D6;border-radius:50%;opacity:.3;}
+
+/* ───────── NAV ───────── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.6);}
+.nav-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 clamp(20px,4vw,40px);height:clamp(64px,7vw,78px);}
+.brand{display:flex;align-items:center;gap:11px;cursor:pointer;}
+.brand-mark{width:38px;height:38px;border-radius:10px;background:var(--bordo);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;}
+.brand-name{font-weight:800;font-size:19px;letter-spacing:-.5px;}
+.brand-name b{color:var(--bordo);}
+.nav-links{display:flex;align-items:center;gap:clamp(6px,1.5vw,20px);}
+.nav-links a{font-weight:600;font-size:14px;color:var(--ink);text-decoration:none;padding:8px 4px;position:relative;transition:color .18s;white-space:nowrap;}
+.nav-links a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;width:0;background:var(--bordo);margin:0 auto;transition:width .22s;}
+.nav-links a:hover{color:var(--bordo);}
+.nav-links a:hover::after{width:100%;}
+.nav-right{display:flex;align-items:center;gap:18px;}
+.nav-login{font-weight:600;font-size:14px;color:var(--ink);text-decoration:none;white-space:nowrap;}
+.nav-phone{font-weight:800;font-size:18px;color:var(--bordo);letter-spacing:.3px;white-space:nowrap;}
+.burger{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--hair);background:rgba(255,255,255,.6);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.burger span{width:18px;height:2px;background:var(--bordo);border-radius:2px;display:block;}
+
+/* ───────── HERO ───────── */
+.hero{position:relative;z-index:1;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:clamp(28px,4vw,56px);
+  padding:clamp(40px,6vw,76px) clamp(20px,4vw,40px) clamp(120px,14vw,180px);}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.9);border-radius:999px;padding:8px 18px 8px 13px;font-size:12.5px;font-weight:700;color:var(--bordo);letter-spacing:.4px;margin-bottom:26px;box-shadow:var(--shadow);}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);}
+.hero h1{font-size:clamp(40px,5.6vw,78px);font-weight:800;line-height:1.02;letter-spacing:-.035em;color:var(--bordo);text-wrap:balance;}
+.hero p{font-size:clamp(15.5px,1.2vw,18px);color:var(--muted);max-width:440px;margin:26px 0 34px;font-weight:500;line-height:1.7;text-wrap:pretty;}
+.hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.btn{font-family:inherit;font-weight:700;font-size:15.5px;border-radius:999px;padding:15px 30px;cursor:pointer;transition:background .18s,color .18s;display:inline-flex;align-items:center;gap:10px;white-space:nowrap;border:1.5px solid transparent;}
+.btn-primary{background:var(--bordo);color:#fff;box-shadow:var(--shadow-bordo);}
+.btn-primary:hover{background:var(--bordo-hi);}
+.btn-ghost{background:transparent;color:var(--bordo);border-color:rgba(123,29,29,.5);}
+.btn-ghost:hover{background:var(--bordo);color:#fff;border-color:var(--bordo);}
+
+/* anniversary emblem */
+.emblem{position:relative;justify-self:center;width:100%;max-width:480px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
+.cloud{position:absolute;inset:2% 0 0;background:radial-gradient(circle at 50% 45%,#fff 60%,rgba(255,255,255,0) 75%);}
+.emblem-photo{position:absolute;inset:14% 12% 16% 12%;border-radius:50%;overflow:hidden;border:6px solid #fff;box-shadow:0 24px 60px rgba(36,49,64,.16);}
+.emblem-photo image-slot{display:block;width:100%;height:100%;}
+.emblem-badge{position:absolute;top:2%;right:4%;z-index:3;width:clamp(118px,17vw,158px);height:clamp(118px,17vw,158px);border-radius:50%;background:#fff;border:3px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(123,29,29,.16);}
+.emblem-badge .num{font-weight:800;font-size:clamp(42px,6vw,58px);color:var(--bordo);line-height:.9;letter-spacing:-2px;}
+.emblem-badge .yas{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(26px,3.6vw,34px);color:var(--gold-deep);line-height:.8;margin-top:2px;}
+.emblem-chip{position:absolute;bottom:6%;left:2%;z-index:3;background:var(--bordo);color:#fff;border-radius:999px;padding:9px 18px;font-size:12.5px;font-weight:700;letter-spacing:.5px;box-shadow:var(--shadow-bordo);}
+.emblem-est{position:absolute;top:8%;left:0;z-index:3;font-family:'Caveat',cursive;font-weight:700;font-size:24px;color:var(--gold-deep);transform:rotate(-6deg);}
+
+/* ───────── BOTTOM SEARCH CARD ───────── */
+.finder{position:relative;z-index:2;max-width:1080px;margin:clamp(-90px,-11vw,-130px) auto 0;padding:0 clamp(20px,4vw,40px);}
+.finder-in{background:var(--bordo);border-radius:22px;padding:clamp(24px,3vw,36px) clamp(24px,3.5vw,44px);box-shadow:0 24px 60px rgba(123,29,29,.28);display:grid;grid-template-columns:1fr auto;gap:clamp(20px,3vw,40px);align-items:center;}
+.finder-txt h3{color:#fff;font-size:clamp(20px,2vw,26px);font-weight:800;letter-spacing:-.02em;line-height:1.1;}
+.finder-txt p{color:rgba(255,255,255,.72);font-size:14px;font-weight:500;margin-top:7px;}
+.finder-form{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.finder-form select{appearance:none;font-family:inherit;font-weight:600;font-size:14.5px;color:var(--ink);background:#fff;border:none;border-radius:999px;padding:14px 42px 14px 20px;cursor:pointer;min-width:180px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' stroke='%237B1D1D' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 18px center;}
+.finder-form .fbtn{font-family:inherit;font-weight:700;font-size:14.5px;background:var(--gold);color:#3A2A06;border:none;border-radius:999px;padding:14px 28px;cursor:pointer;transition:background .18s;white-space:nowrap;}
+.finder-form .fbtn:hover{background:#D8AF5C;}
+
+@media(max-width:920px){
+  .nav-links{display:none;}
+  .nav-login{display:none;}
+  .burger{display:flex;}
+  .hero{grid-template-columns:1fr;gap:36px;padding-bottom:clamp(110px,18vw,150px);}
+  .emblem{order:-1;max-width:360px;}
+  .finder-in{grid-template-columns:1fr;gap:20px;}
+}
+@media(max-width:520px){
+  .finder-form{flex-direction:column;align-items:stretch;}
+  .finder-form select,.finder-form .fbtn{width:100%;}
+}
+</style>
+</head>
+<body>
+
+<!-- decorative marks -->
+<span class="deco x" style="top:120px;left:46%;">✕</span>
+<span class="deco x" style="top:230px;left:40%;">✕</span>
+<span class="deco o" style="top:300px;left:43%;"></span>
+<span class="deco b" style="top:160px;left:52%;"></span>
+<span class="deco x" style="top:380px;left:50%;font-size:18px;">✕</span>
+<span class="deco o" style="top:120px;right:8%;width:24px;height:24px;"></span>
+
+<!-- ───────── NAV ───────── -->
+<header class="nav">
+  <div class="nav-in">
+    <div class="brand">
+      <div class="brand-mark">K</div>
+      <div class="brand-name">KADRO<b>kurs</b></div>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Kurslarımız</a>
+      <a href="#">Duyurular</a>
+      <a href="#">Başarılarımız</a>
+      <a href="#">Kurumsal</a>
+      <a href="#">Bize Ulaşın</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#" class="nav-login">Giriş</a>
+      <span class="nav-phone">444 0 824</span>
+      <button class="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow"><span class="dot"></span> 2002'DEN BERİ · BAŞARININ ADRESİ</span>
+    <h1>24 Yıllık Köklü Mirası Geleceğe Taşıyoruz</h1>
+    <p>Çeyrek asra yaklaşan akademik birikim, modern yöntemler ve binlerce başarı hikayesi. Yeni dönemde de yanındayız.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary">Hemen Başvur <span>→</span></button>
+      <button class="btn btn-ghost">Kurumu Tanıyın</button>
+    </div>
+  </div>
+
+  <div class="emblem">
+    <div class="cloud"></div>
+    <div class="emblem-est">başarıyla…</div>
+    <div class="emblem-photo">
+      <image-slot id="anniv-photo" shape="circle" placeholder="Kampüs / öğrenci fotoğrafını sürükle" fit="cover"></image-slot>
+    </div>
+    <div class="emblem-badge">
+      <span class="num">24</span>
+      <span class="yas">Yaşında</span>
+    </div>
+    <span class="emblem-chip">KADRO KURSU</span>
+  </div>
+</section>
+
+<!-- ───────── BOTTOM SEARCH CARD ───────── -->
+<div class="finder">
+  <div class="finder-in">
+    <div class="finder-txt">
+      <h3>Sana en yakın şubeyi bul</h3>
+      <p>İl ve ilçeni seç, kampüsümüze bir adımda ulaş.</p>
+    </div>
+    <form class="finder-form" onsubmit="return false">
+      <select><option>İl seçin</option><option>İstanbul</option><option>Ankara</option><option>İzmir</option><option>Bursa</option></select>
+      <select><option>İlçe seçin</option><option>Kadıköy</option><option>Çankaya</option><option>Bornova</option></select>
+      <button class="fbtn">Şubeyi Bul →</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

@@ -23,6 +23,7 @@
 :root{
   --ivory:#F5F0E7;--paper:#fff;--bordo:#7B1D1D;--bordo-hi:#5E1414;--bordo-lo:#A23030;
   --orange:#FF6B3D;--ink:#1C1714;--muted:#6E655C;--faint:#9A8E83;--hair:#E2D9CA;
+  --mint:#15C08A;--mint-deep:#0E9E72;--mint-soft:#D7F5E8;--gold:#B58A42;--gold-deep:#96702F;--gold-soft:#F1E9D6;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -47,7 +48,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--ivory
 .intro p{font-size:clamp(15px,1.2vw,17.5px);color:var(--muted);margin-top:22px;max-width:560px;line-height:1.75;text-wrap:pretty;}
 
 /* grid */
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,1.8vw,24px);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));gap:clamp(16px,1.6vw,22px);}
 .card{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;min-height:340px;padding:30px;transition:transform .2s ease,box-shadow .2s ease;overflow:hidden;}
 .card .num{font-family:'Plus Jakarta Sans';font-size:12px;font-weight:700;letter-spacing:2px;color:var(--faint);}
 .card .preview{flex:1;display:flex;align-items:center;justify-content:center;margin:22px 0;}
@@ -80,7 +81,20 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--ivory
 .bento-vis .big{grid-row:span 2;min-height:74px;}
 .bento-vis .sm{min-height:33px;}
 
-/* card 4 — Classic (current) */
+/* card 4 — Premium Elite */
+.c-vibrant{background:#F7F1E6;border:1px solid var(--hair);border-radius:20px;box-shadow:0 1px 2px rgba(36,27,22,.04),0 14px 36px rgba(36,27,22,.06);}
+.c-vibrant:hover{transform:translateY(-5px);box-shadow:0 4px 10px rgba(36,27,22,.06),0 24px 52px rgba(36,27,22,.1);}
+.c-vibrant .ctitle{color:var(--bordo);}
+.c-vibrant .go{color:var(--gold-deep);}
+.vib-vis{display:flex;flex-direction:column;gap:9px;width:100%;}
+.vib-vis .vbp{height:48px;border-radius:11px;background:linear-gradient(135deg,#F1E9D6,#FBF6EC);border:1px solid var(--hair);}
+.vib-vis .vrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.vib-vis .vt{height:34px;border-radius:9px;background:#fff;border:1px solid var(--hair);position:relative;}
+.vib-vis .vt::before{content:'';position:absolute;left:9px;top:10px;width:26px;height:6px;border-radius:3px;}
+.vib-vis .vt.b::before{background:var(--bordo);}
+.vib-vis .vt.g::before{background:var(--gold);}
+
+/* card 5 — Classic (current) */
 .c-classic{background:linear-gradient(160deg,#8A2222 0%,var(--bordo) 38%,#3D0E0E 100%);color:#fff;border-radius:2px;box-shadow:0 4px 14px rgba(61,14,14,.22),0 24px 52px rgba(61,14,14,.3);}
 .c-classic:hover{transform:translateY(-5px);box-shadow:0 10px 22px rgba(61,14,14,.28),0 32px 66px rgba(61,14,14,.38);}
 .c-classic .num{color:rgba(232,196,122,.85);}
@@ -106,7 +120,6 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--ivory
 /* footer */
 .foot{margin-top:clamp(40px,6vh,64px);padding-top:24px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--faint);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
 
-@media(max-width:1080px){.grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:560px){.grid{grid-template-columns:1fr;}.card{min-height:0;}}
 </style>
 </head>
@@ -114,17 +127,12 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--ivory
 <div class="wrap">
 
   <div class="top">
-    <div class="brand">
-      <div class="brand-mark">K</div>
-      <div class="brand-name">KADRO<b>kurs</b></div>
-    </div>
     <div class="meta">Tasarım Yönleri · 2026</div>
   </div>
 
   <div class="intro">
     <span class="eyebrow">Hero Konsept Çalışması</span>
-    <h1>Dört yön,<br>tek <em>marka.</em></h1>
-    <p>KADROkurs ana sayfası için hazırlanan görsel diller — mevcut klasik tasarım ve üç modern yön. Birini seçerek tam ekran önizleyebilirsin.</p>
+    <p>KADROkurs ana sayfası için hazırlanan görsel diller — mevcut klasik tasarım ve dört modern yön. Birini seçerek tam ekran önizleyebilirsin.</p>
   </div>
 
   <div class="grid">
@@ -174,7 +182,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--ivory
       <span class="go">Önizle <span class="arr">→</span></span>
     </a>
 
-    <!-- 04 Classic / Current -->
+    <!-- 05 Classic / Current -->
     <a class="card c-classic" href="classic.html">
       <span class="num">04 — KLASİK</span>
       <div class="preview">
@@ -182,7 +190,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--ivory
           <div class="classic-seal"><span>K</span></div>
         </div>
       </div>
-      <div class="ctitle">Mevcut Tasarım</div>
+      <div class="ctitle">Klasik </div>
       <div class="cdesc">Köklü, koyu ve klasik kurumsal yapı. Tam sayfa, çok bölümlü mevcut site.</div>
       <span class="go">Önizle <span class="arr">→</span></span>
     </a>
