@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KADROkurs — Başarıyı Birlikte İnşa Ediyoruz</title>
+
+<template id="__bundler_thumbnail" data-bg-color="#F5F0E7">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F5F0E7"/>
+    <text x="90" y="340" fill="#7B1D1D" font-family="Georgia, serif" font-weight="700" font-size="150">Başarıyı</text>
+    <text x="90" y="490" fill="#7B1D1D" font-family="Georgia, serif" font-weight="700" font-size="150" font-style="italic">birlikte.</text>
+    <line x1="820" y1="200" x2="820" y2="600" stroke="#E0D7C8" stroke-width="3"/>
+    <line x1="900" y1="430" x2="1110" y2="430" stroke="#C9A8AC" stroke-width="3"/>
+    <rect x="900" y="500" width="210" height="56" rx="28" fill="#7B1D1D"/>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ivory:#F5F0E7;
+  --ivory-2:#EFE9DC;
+  --bordo:#7B1D1D;
+  --bordo-deep:#5E1414;
+  --ink:#241B16;
+  --muted:#8B7F72;
+  --faint:#A99C8C;
+  --hair:#E2D9CA;
+  --hair-bordo:rgba(123,29,29,.28);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--ivory);color:var(--ink);
+  -webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;
+}
+.serif{font-family:'Playfair Display',Georgia,serif;}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--faint);}
+
+/* ───────── NAV ───────── */
+.nav{position:absolute;top:0;left:0;right:0;z-index:20;}
+.nav-in{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:clamp(22px,3vw,38px) clamp(22px,5vw,72px);}
+.brand{display:flex;align-items:baseline;gap:10px;cursor:pointer;}
+.brand .bn{font-family:'Playfair Display',serif;font-weight:700;font-size:23px;letter-spacing:-.3px;color:var(--ink);}
+.brand .bn b{color:var(--bordo);font-weight:700;}
+.brand .bs{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--faint);}
+.nav-links{display:flex;align-items:center;gap:clamp(14px,2.2vw,40px);}
+.nav-links a{font-size:13.5px;font-weight:500;letter-spacing:.2px;color:var(--ink);text-decoration:none;opacity:.78;transition:opacity .18s,color .18s;}
+.nav-links a:hover{opacity:1;color:var(--bordo);}
+.nav-phone{font-size:13.5px;font-weight:600;color:var(--bordo);letter-spacing:.3px;white-space:nowrap;}
+.burger{display:none;width:40px;height:40px;border:1px solid var(--hair);background:transparent;border-radius:50%;cursor:pointer;flex-direction:column;gap:4px;align-items:center;justify-content:center;}
+.burger span{width:17px;height:1.5px;background:var(--ink);display:block;}
+
+/* ───────── HERO ───────── */
+.hero{min-height:100svh;max-width:1380px;margin:0 auto;
+  display:grid;grid-template-columns:1.15fr 1px .85fr;align-items:center;
+  gap:clamp(36px,5vw,84px);padding:clamp(120px,15vh,180px) clamp(22px,5vw,72px) clamp(48px,6vh,80px);}
+.divider{align-self:stretch;width:1px;background:var(--hair);margin:clamp(40px,8vh,90px) 0;}
+
+/* left */
+.h-left{max-width:680px;}
+.h-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:clamp(26px,4vh,40px);}
+.h-eyebrow::after{content:'';height:1px;width:54px;background:var(--hair-bordo);}
+.h-title{font-family:'Playfair Display',serif;color:var(--bordo);font-weight:700;
+  font-size:clamp(46px,7.4vw,108px);line-height:.97;letter-spacing:-.015em;text-wrap:balance;}
+.h-title .it{font-style:italic;font-weight:600;}
+.h-sub{font-size:clamp(14px,1.05vw,15.5px);font-weight:400;color:var(--muted);
+  line-height:2;letter-spacing:.2px;max-width:430px;margin-top:clamp(28px,4vh,40px);}
+.h-meta{display:flex;align-items:center;gap:clamp(22px,3vw,40px);margin-top:clamp(34px,5vh,52px);flex-wrap:wrap;}
+.h-meta .mi .mn{font-family:'Playfair Display',serif;font-size:clamp(26px,2.4vw,34px);font-weight:700;color:var(--ink);line-height:1;}
+.h-meta .mi .ml{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-top:7px;}
+.h-meta .vline{width:1px;height:38px;background:var(--hair);}
+
+/* right — form (no card) */
+.h-right{max-width:380px;width:100%;justify-self:center;}
+.form-head .fh-t{font-family:'Playfair Display',serif;font-size:clamp(24px,2.1vw,30px);font-weight:600;color:var(--ink);line-height:1.1;}
+.form-head .fh-s{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.65;}
+
+/* countdown */
+.countdown{display:flex;align-items:flex-end;gap:clamp(14px,2vw,22px);margin:clamp(26px,4vh,34px) 0;padding-bottom:clamp(22px,3vh,28px);border-bottom:1px solid var(--hair);}
+.cd-lead{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);writing-mode:horizontal-tb;line-height:1.5;max-width:74px;padding-bottom:6px;}
+.cd-units{display:flex;gap:clamp(12px,1.6vw,20px);}
+.cd-u{text-align:center;}
+.cd-u .n{font-family:'Playfair Display',serif;font-size:clamp(28px,2.8vw,40px);font-weight:700;color:var(--bordo);line-height:1;font-variant-numeric:tabular-nums;}
+.cd-u .l{font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);margin-top:7px;}
+
+/* fields */
+.form{display:flex;flex-direction:column;gap:clamp(20px,3vh,26px);}
+.field{position:relative;}
+.field label{display:block;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+.field input,.field select{width:100%;border:none;border-bottom:1px solid var(--hair-bordo);background:transparent;
+  font-family:'Inter',sans-serif;font-size:15.5px;color:var(--ink);padding:6px 0 11px;outline:none;transition:border-color .2s;}
+.field input::placeholder{color:var(--faint);font-weight:300;}
+.field select{appearance:none;cursor:pointer;color:var(--ink);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' stroke='%237B1D1D' stroke-width='1.4' fill='none' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 2px center;}
+.field input:focus,.field select:focus{border-bottom-color:var(--bordo);}
+
+/* CTA */
+.cta{margin-top:clamp(10px,2vh,16px);width:100%;background:var(--bordo);color:#fff;border:none;border-radius:999px;
+  font-family:'Inter',sans-serif;font-weight:600;font-size:15px;letter-spacing:.3px;padding:17px 28px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:background .2s,transform .16s,box-shadow .16s;
+  box-shadow:0 10px 26px rgba(123,29,29,.22);}
+.cta:hover{background:var(--bordo-deep);transform:translateY(-2px);box-shadow:0 16px 32px rgba(123,29,29,.3);}
+.cta .arr{transition:transform .2s;}
+.cta:hover .arr{transform:translateX(4px);}
+.form-note{font-size:11.5px;color:var(--faint);line-height:1.6;text-align:center;margin-top:4px;}
+.form-note a{color:var(--bordo);text-decoration:none;border-bottom:1px solid var(--hair-bordo);}
+
+/* responsive */
+@media(max-width:1000px){
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  .hero{grid-template-columns:1fr;gap:48px;min-height:0;padding-top:clamp(110px,16vh,150px);}
+  .divider{display:none;}
+  .h-right{justify-self:start;max-width:440px;}
+  .h-left{max-width:none;}
+}
+@media(max-width:480px){
+  .h-meta{gap:18px;}
+  .cd-lead{max-width:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ───────── NAV ───────── -->
+<header class="nav">
+  <div class="nav-in">
+    <div class="brand">
+      <span class="bn">KADRO<b>kurs</b></span>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Kurumsal</a>
+      <a href="#">Programlar</a>
+      <a href="#">Başarılarımız</a>
+      <a href="#">Kampüs</a>
+      <a href="#">İletişim</a>
+    </nav>
+    <span class="nav-phone">0 850 000 00 00</span>
+    <button class="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+
+  <!-- LEFT -->
+  <div class="h-left">
+    <div class="h-eyebrow"><span class="eyebrow">Kadro Anadolu Lisesi · 2026</span></div>
+    <h1 class="h-title">Başarıyı<br><span class="it">birlikte</span> inşa<br>ediyoruz.</h1>
+    <p class="h-sub">Çeyrek asırlık akademik birikimi, her öğrenciye özel rehberlikle buluşturuyoruz. Sınava değil, geleceğe hazırlıyoruz.</p>
+    <div class="h-meta">
+      <div class="mi"><div class="mn serif">%98</div><div class="ml">Yerleşme</div></div>
+      <div class="vline"></div>
+      <div class="mi"><div class="mn serif">24</div><div class="ml">Yıllık tecrübe</div></div>
+      <div class="vline"></div>
+      <div class="mi"><div class="mn serif">3.200<span style="font-size:.6em">+</span></div><div class="ml">Mezun</div></div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider"></div>
+
+  <!-- RIGHT — FORM -->
+  <div class="h-right">
+    <div class="form-head">
+      <div class="fh-t serif">Ön kayıt başvurusu</div>
+      <div class="fh-s">Sizi arayalım, deneme dersinizi planlayalım.</div>
+    </div>
+
+    <div class="countdown">
+      <div class="cd-lead">Kayıtlara son</div>
+      <div class="cd-units">
+        <div class="cd-u"><div class="n" id="cd-d">14</div><div class="l">Gün</div></div>
+        <div class="cd-u"><div class="n" id="cd-h">06</div><div class="l">Saat</div></div>
+        <div class="cd-u"><div class="n" id="cd-m">42</div><div class="l">Dakika</div></div>
+        <div class="cd-u"><div class="n" id="cd-s">18</div><div class="l">Saniye</div></div>
+      </div>
+    </div>
+
+    <form class="form" onsubmit="return false">
+      <div class="field">
+        <label for="f-name">Ad Soyad</label>
+        <input id="f-name" type="text" placeholder="Adınız ve soyadınız" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="f-phone">Telefon</label>
+        <input id="f-phone" type="tel" placeholder="0 (5__) ___ __ __" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="f-prog">İlgilendiğiniz program</label>
+        <select id="f-prog">
+          <option>TYT / AYT Hazırlık</option>
+          <option>LGS Hazırlık</option>
+          <option>Birebir Koçluk</option>
+        </select>
+      </div>
+      <button class="cta" type="submit">Başvuruyu Gönder <span class="arr">→</span></button>
+      <p class="form-note">Göndererek <a href="#">aydınlatma metnini</a> kabul etmiş olursunuz.</p>
+    </form>
+  </div>
+
+</section>
+
+<script>
+(function(){
+  // sabit son başvuru tarihi — gerçek deadline gibi davranır, her açılışta sıfırlanmaz
+  var target = new Date('2026-07-15T17:00:00').getTime();
+  var d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),
+      m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+  function p(n){return String(n).padStart(2,'0');}
+  function tick(){
+    var diff=Math.max(0,target-Date.now()),t=Math.floor(diff/1000);
+    var dd=Math.floor(t/86400);t-=dd*86400;
+    var hh=Math.floor(t/3600);t-=hh*3600;
+    var mm=Math.floor(t/60);var ss=t-mm*60;
+    d.textContent=p(dd);h.textContent=p(hh);m.textContent=p(mm);s.textContent=p(ss);
+  }
+  tick();setInterval(tick,1000);
+})();
+</script>
+
+</body>
+</html>

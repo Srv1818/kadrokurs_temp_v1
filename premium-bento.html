@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KADROkurs — Köklü Başarı, Modern Gelecek</title>
+
+<template id="__bundler_thumbnail" data-bg-color="#FBFAF8">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#FBFAF8"/>
+    <rect x="180" y="200" width="380" height="400" rx="40" fill="#7B1D1D"/>
+    <rect x="600" y="200" width="420" height="190" rx="40" fill="#fff" stroke="#EFE7DE" stroke-width="3"/>
+    <rect x="600" y="410" width="200" height="190" rx="40" fill="#fff" stroke="#EFE7DE" stroke-width="3"/>
+    <rect x="820" y="410" width="200" height="190" rx="40" fill="#F3E4E1"/>
+    <circle cx="980" cy="260" r="42" fill="#7B1D1D" opacity="0.15"/>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="image-slot.js"></script>
+
+<style>
+:root{
+  --bg:#FBFAF8;
+  --bg-2:#F5F1EC;
+  --paper:#FFFFFF;
+  --bordo:#7B1D1D;
+  --bordo-lo:#A23030;
+  --bordo-hi:#5C1313;
+  --ink:#1C1714;
+  --muted:#6E655C;
+  --faint:#9A8E83;
+  --line:#ECE5DC;
+  --radius:26px;
+  --radius-sm:18px;
+  --soft:0 2px 6px rgba(28,23,20,.04), 0 18px 44px rgba(28,23,20,.06);
+  --soft-lg:0 4px 10px rgba(28,23,20,.05), 0 30px 70px rgba(28,23,20,.09);
+  --glass:0 2px 8px rgba(123,29,29,.06), 0 24px 60px rgba(123,29,29,.10);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+}
+/* ambient bordo glow blobs (glass catches these) */
+.ambient{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;}
+.ambient::before,.ambient::after{content:'';position:absolute;border-radius:50%;filter:blur(90px);}
+.ambient::before{width:620px;height:620px;top:-180px;right:-120px;background:radial-gradient(circle,rgba(123,29,29,.20),transparent 68%);}
+.ambient::after{width:560px;height:560px;bottom:-160px;left:-140px;background:radial-gradient(circle,rgba(162,48,48,.15),transparent 68%);}
+.blob3{position:fixed;width:480px;height:480px;border-radius:50%;filter:blur(90px);z-index:-1;top:46%;left:42%;background:radial-gradient(circle,rgba(123,29,29,.10),transparent 70%);pointer-events:none;}
+
+/* ───────── NAV ───────── */
+.nav{position:sticky;top:0;z-index:60;padding:14px clamp(16px,4vw,40px) 0;}
+.nav-in{
+  max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;
+  background:rgba(255,255,255,.6);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.7);box-shadow:var(--soft);
+  border-radius:999px;padding:10px 12px 10px 22px;
+}
+.brand{display:flex;align-items:center;gap:11px;cursor:pointer;}
+.brand-mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(140deg,var(--bordo-lo),var(--bordo-hi));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;box-shadow:0 6px 16px rgba(123,29,29,.28);}
+.brand-name{font-weight:800;font-size:18px;letter-spacing:-.4px;line-height:1;}
+.brand-name b{color:var(--bordo);font-weight:800;}
+.brand-sub{font-size:10.5px;color:var(--faint);letter-spacing:.6px;margin-top:3px;font-weight:500;}
+.nav-links{display:flex;align-items:center;gap:clamp(4px,1.4vw,10px);}
+.nav-links a{font-weight:600;font-size:14px;color:var(--muted);text-decoration:none;padding:8px 14px;border-radius:999px;transition:background .18s,color .18s;white-space:nowrap;}
+.nav-links a:hover{background:rgba(123,29,29,.07);color:var(--bordo);}
+.nav-cta{font-family:inherit;font-weight:700;font-size:14px;background:var(--ink);color:#fff;border:none;border-radius:999px;padding:11px 22px;cursor:pointer;transition:transform .16s,box-shadow .16s;box-shadow:0 8px 22px rgba(28,23,20,.18);}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(28,23,20,.24);}
+.burger{display:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.7);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.burger span{width:18px;height:2px;background:var(--ink);border-radius:2px;display:block;}
+
+/* ───────── HERO ───────── */
+.hero{max-width:960px;margin:0 auto;padding:clamp(46px,7vw,96px) clamp(20px,5vw,40px) clamp(28px,4vw,48px);text-align:center;}
+.pill{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:999px;padding:7px 16px 7px 12px;font-size:13px;font-weight:600;color:var(--muted);box-shadow:var(--soft);margin-bottom:30px;}
+.pill .ico{width:22px;height:22px;border-radius:50%;background:linear-gradient(140deg,var(--bordo-lo),var(--bordo-hi));display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;}
+.hero h1{font-size:clamp(40px,6.6vw,80px);font-weight:800;line-height:1.02;letter-spacing:-.035em;text-wrap:balance;}
+.hero h1 .grad{background:linear-gradient(120deg,var(--bordo-lo) 0%,var(--bordo) 45%,var(--bordo-hi) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:clamp(16px,1.4vw,20px);color:var(--muted);max-width:600px;margin:26px auto 36px;font-weight:500;line-height:1.65;text-wrap:pretty;}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn{font-family:inherit;font-weight:700;font-size:15.5px;border-radius:999px;padding:15px 30px;cursor:pointer;border:none;transition:transform .16s,box-shadow .16s,background .16s;display:inline-flex;align-items:center;gap:9px;}
+.btn-primary{background:linear-gradient(140deg,var(--bordo-lo),var(--bordo-hi));color:#fff;box-shadow:0 10px 26px rgba(123,29,29,.30);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(123,29,29,.38);}
+.btn-ghost{background:rgba(255,255,255,.75);backdrop-filter:blur(12px);color:var(--ink);border:1px solid var(--line);box-shadow:var(--soft);}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--soft-lg);}
+
+/* ───────── BENTO ───────── */
+.bento-wrap{max-width:1200px;margin:0 auto;padding:clamp(16px,2.5vw,32px) clamp(16px,4vw,40px) clamp(56px,8vw,110px);}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:184px;gap:18px;}
+.card{border-radius:var(--radius);padding:30px;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.span2{grid-column:span 2;}
+.row2{grid-row:span 2;}
+
+/* solid white card */
+.c-solid{background:var(--paper);border:1px solid var(--line);box-shadow:var(--soft);}
+/* glass card */
+.c-glass{background:rgba(255,255,255,.5);backdrop-filter:blur(26px) saturate(1.6);-webkit-backdrop-filter:blur(26px) saturate(1.6);border:1px solid rgba(255,255,255,.75);box-shadow:var(--glass);}
+
+/* feature (bordo) */
+.c-feature{background:linear-gradient(150deg,#8E2222 0%,var(--bordo) 42%,var(--bordo-hi) 100%);color:#fff;justify-content:space-between;}
+.c-feature::after{content:'';position:absolute;width:280px;height:280px;border-radius:50%;right:-90px;bottom:-110px;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 65%);}
+.c-feature .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6);}
+.c-feature h2{font-size:clamp(28px,3.2vw,40px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-top:auto;position:relative;z-index:2;}
+.c-feature p{color:rgba(255,255,255,.78);font-weight:500;font-size:15px;margin-top:14px;max-width:330px;position:relative;z-index:2;}
+.c-feature .fbtn{margin-top:26px;align-self:flex-start;background:#fff;color:var(--bordo);font-weight:700;font-size:15px;border:none;border-radius:999px;padding:13px 26px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;position:relative;z-index:2;transition:transform .16s,box-shadow .16s;box-shadow:0 10px 24px rgba(0,0,0,.18);}
+.c-feature .fbtn:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(0,0,0,.24);}
+
+/* photo card */
+.c-photo{padding:0;border:1px solid var(--line);box-shadow:var(--soft);background:var(--paper);}
+.c-photo image-slot{display:block;width:100%;height:100%;}
+.c-photo .photo-chip{position:absolute;left:18px;bottom:18px;right:18px;z-index:3;display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.55);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,.7);border-radius:16px;padding:12px 15px;box-shadow:0 12px 30px rgba(0,0,0,.14);}
+.photo-chip .pc-ico{width:40px;height:40px;border-radius:11px;background:linear-gradient(140deg,var(--bordo-lo),var(--bordo-hi));display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0;}
+.photo-chip .pc-t{font-weight:700;font-size:14px;color:var(--ink);line-height:1.2;}
+.photo-chip .pc-s{font-size:12px;color:var(--muted);}
+
+/* stat card */
+.c-stat{justify-content:flex-end;}
+.c-stat .s-top{position:absolute;top:26px;left:30px;width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;background:rgba(123,29,29,.08);color:var(--bordo);}
+.s-num{font-size:clamp(36px,4vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--bordo);}
+.s-num .u{color:var(--bordo-lo);}
+.s-label{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:9px;}
+.c-glass .s-num{color:var(--bordo-hi);}
+
+/* programs card */
+.c-prog h3{font-size:13px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--bordo);margin-bottom:6px;}
+.c-prog .pt{font-size:clamp(22px,2.4vw,28px);font-weight:800;letter-spacing:-.02em;margin-bottom:22px;}
+.prog-list{display:flex;flex-direction:column;gap:10px;margin-top:auto;}
+.prog-row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:var(--bg);border:1px solid var(--line);cursor:pointer;transition:background .16s,border-color .16s,transform .16s;}
+.prog-row:hover{background:#fff;border-color:rgba(123,29,29,.25);transform:translateX(3px);}
+.prog-row .pr-ico{width:36px;height:36px;border-radius:10px;background:linear-gradient(140deg,#fff,#F3ECE5);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.prog-row .pr-name{font-weight:700;font-size:15px;flex:1;}
+.prog-row .pr-meta{font-size:12px;color:var(--faint);font-weight:600;}
+.prog-row .pr-arr{color:var(--bordo);font-weight:700;font-size:16px;opacity:.5;transition:opacity .16s;}
+.prog-row:hover .pr-arr{opacity:1;}
+
+/* quote card */
+.c-quote{justify-content:space-between;}
+.c-quote .qmark{font-size:60px;line-height:.6;color:var(--bordo);opacity:.18;font-family:Georgia,serif;font-weight:700;}
+.c-quote blockquote{font-size:clamp(17px,1.7vw,21px);font-weight:600;letter-spacing:-.01em;line-height:1.45;color:var(--ink);margin:8px 0 0;text-wrap:pretty;}
+.c-quote .qby{display:flex;align-items:center;gap:12px;margin-top:20px;}
+.qby .qav{width:42px;height:42px;border-radius:50%;background:linear-gradient(140deg,var(--bordo-lo),var(--bordo-hi));color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px;}
+.qby .qn{font-weight:700;font-size:14.5px;line-height:1.2;}
+.qby .qr{font-size:12.5px;color:var(--muted);}
+
+/* cta card */
+.c-cta{background:linear-gradient(135deg,var(--ink) 0%,#2E2620 100%);color:#fff;flex-direction:row;align-items:center;justify-content:space-between;gap:20px;}
+.c-cta::after{content:'';position:absolute;width:240px;height:240px;border-radius:50%;right:-80px;top:-90px;background:radial-gradient(circle,rgba(123,29,29,.55),transparent 66%);}
+.c-cta .eyebrow{font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--bordo-lo);}
+.c-cta h2{font-size:clamp(22px,2.3vw,30px);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin-top:8px;position:relative;z-index:2;max-width:320px;text-wrap:balance;}
+.c-cta .cta-txt{position:relative;z-index:2;}
+.c-cta .fbtn{flex-shrink:0;background:linear-gradient(140deg,var(--bordo-lo),var(--bordo-hi));color:#fff;font-weight:700;font-size:15px;border:none;border-radius:999px;padding:14px 26px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;position:relative;z-index:2;transition:transform .16s,box-shadow .16s;box-shadow:0 10px 24px rgba(123,29,29,.4);}
+.c-cta .fbtn:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(123,29,29,.5);}
+
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px;}
+  .span2{grid-column:span 2;}
+}
+@media(max-width:560px){
+  .bento{grid-template-columns:1fr;grid-auto-rows:auto;}
+  .span2{grid-column:span 1;}
+  .card{min-height:180px;}
+  .c-feature{min-height:300px;}
+  .row2{grid-row:span 1;}
+  .nav-in{border-radius:22px;}
+  .c-cta{flex-direction:column;align-items:flex-start;justify-content:center;gap:18px;}
+}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="blob3"></div>
+
+<!-- ───────── NAV ───────── -->
+<header class="nav">
+  <div class="nav-in">
+    <div class="brand">
+      <div class="brand-mark">K</div>
+      <div>
+        <div class="brand-name">KADRO<b>kurs</b></div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Kurumsal</a>
+      <a href="#bento">Programlar</a>
+      <a href="#">Başarılarımız</a>
+      <a href="#">Blog</a>
+      <a href="#">İletişim</a>
+    </nav>
+    <button class="nav-cta">Başvur</button>
+    <button class="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <span class="pill"><span class="ico">★</span> 2026 dönemi kayıtları başladı</span>
+  <h1>Köklü Başarı,<br><span class="grad">Modern Gelecek.</span></h1>
+  <p>Çeyrek asırlık tecrübeyi, kişiye özel modern eğitim yöntemleriyle buluşturuyoruz. Öğrencimizi hedefine bir adım değil, emin adımlarla taşıyoruz.</p>
+  <div class="hero-actions">
+    <button class="btn btn-primary">Ücretsiz deneme dersi <span>→</span></button>
+    <button class="btn btn-ghost">Programları keşfet</button>
+  </div>
+</section>
+
+<!-- ───────── BENTO ───────── -->
+<section class="bento-wrap" id="bento">
+  <div class="bento">
+
+    <!-- Feature / bordo -->
+    <div class="card c-feature span2 row2">
+      <span class="eyebrow">Neden KADROkurs?</span>
+      <h2>Geleneğin disiplini, geleceğin yöntemleri.</h2>
+      <p>Uzman kadro, veriye dayalı takip ve birebir koçluk; hepsi tek bir başarı planında.</p>
+      <button class="fbtn">Bizi tanıyın <span>→</span></button>
+    </div>
+
+    <!-- Photo -->
+    <div class="card c-photo span2 row2">
+      <image-slot id="bento-photo" shape="rect" placeholder="Aydınlık, enerjik öğrenci fotoğrafını buraya sürükle" fit="cover"></image-slot>
+      <div class="photo-chip">
+        <div class="pc-ico">🎓</div>
+        <div>
+          <div class="pc-t">Modern kampüs deneyimi</div>
+          <div class="pc-s">Işıl ışıl derslikler & çalışma alanları</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 stats -->
+    <div class="card c-solid c-stat">
+      <div class="s-top">🎯</div>
+      <div class="s-num">%98</div>
+      <div class="s-label">Üniversiteye yerleşme</div>
+    </div>
+    <div class="card c-glass c-stat">
+      <div class="s-top">⏳</div>
+      <div class="s-num">24<span class="u">+</span></div>
+      <div class="s-label">Yıllık tecrübe</div>
+    </div>
+    <div class="card c-solid c-stat">
+      <div class="s-top">🎓</div>
+      <div class="s-num">3.2<span class="u">B</span></div>
+      <div class="s-label">Mezun öğrenci</div>
+    </div>
+    <div class="card c-glass c-stat">
+      <div class="s-top">📍</div>
+      <div class="s-num">12</div>
+      <div class="s-label">Şube & kampüs</div>
+    </div>
+
+    <!-- Programs -->
+    <div class="card c-solid c-prog span2 row2">
+      <h3>Programlar</h3>
+      <div class="pt">Sana uygun yolu seç</div>
+      <div class="prog-list">
+        <div class="prog-row"><div class="pr-ico">🎯</div><div class="pr-name">TYT / AYT Hazırlık</div><span class="pr-meta">12. sınıf & mezun</span><span class="pr-arr">→</span></div>
+        <div class="prog-row"><div class="pr-ico">📐</div><div class="pr-name">LGS Hazırlık</div><span class="pr-meta">7 & 8. sınıf</span><span class="pr-arr">→</span></div>
+        <div class="prog-row"><div class="pr-ico">💡</div><div class="pr-name">Birebir Koçluk</div><span class="pr-meta">Tüm seviyeler</span><span class="pr-arr">→</span></div>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="card c-glass c-quote span2">
+      <div class="qmark">”</div>
+      <blockquote>Çocuğumun hem akademik başarısı hem özgüveni KADROkurs ile bambaşka bir noktaya taşındı.</blockquote>
+      <div class="qby">
+        <div class="qav">EY</div>
+        <div>
+          <div class="qn">Elif Yıldız</div>
+          <div class="qr">Mezun velisi · 2025</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="card c-cta span2">
+      <div class="cta-txt">
+        <span class="eyebrow">Son kontenjanlar</span>
+        <h2>Geleceğini bugün planla.</h2>
+      </div>
+      <button class="fbtn">Hemen başvur <span>→</span></button>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

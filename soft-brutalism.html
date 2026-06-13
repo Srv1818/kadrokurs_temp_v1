@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KADROkurs — Soft Brutalism Hero</title>
+
+<template id="__bundler_thumbnail" data-bg-color="#7B1D1D">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#FBF8F3"/>
+    <rect x="240" y="250" width="720" height="300" fill="none" stroke="#7B1D1D" stroke-width="14"/>
+    <rect x="270" y="285" width="720" height="300" fill="#7B1D1D"/>
+    <text x="600" y="455" text-anchor="middle" fill="#FBF8F3" font-family="Arial Black, sans-serif" font-weight="900" font-size="150">KK</text>
+    <circle cx="930" cy="250" r="60" fill="#FF6B3D"/>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<script src="image-slot.js"></script>
+
+<style>
+:root{
+  /* palette */
+  --bone:#FBF8F3;
+  --paper:#FFFFFF;
+  --bordo:#7B1D1D;
+  --bordo-deep:#5E1414;
+  --orange:#FF6B3D;
+  --ink:#1A1410;
+  --muted:#6B5F54;
+  --line:#1A1410;
+
+  /* brutalist tokens */
+  --bd:3px solid var(--ink);
+  --bd-bordo:3px solid var(--bordo);
+  --shadow:7px 7px 0 var(--bordo);
+  --shadow-sm:4px 4px 0 var(--bordo);
+  --shadow-ink:7px 7px 0 var(--ink);
+  --shadow-orange:7px 7px 0 var(--orange);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Archivo',system-ui,sans-serif;
+  background:var(--bone);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.label{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:2px;}
+
+/* ───────── NAV ───────── */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:var(--bone);
+  border-bottom:3px solid var(--ink);
+}
+.nav-in{
+  max-width:1340px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;padding:0 clamp(18px,4vw,56px);height:clamp(66px,7vw,84px);
+}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer;flex-shrink:0;}
+.brand-mark{
+  width:42px;height:42px;background:var(--bordo);
+  border:3px solid var(--ink);box-shadow:3px 3px 0 var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:900;font-size:19px;line-height:1;
+}
+.brand-name{font-weight:900;font-size:clamp(18px,1.5vw,22px);letter-spacing:-.5px;line-height:1;}
+.brand-name b{color:var(--bordo);}
+.brand-sub{font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-top:3px;}
+.nav-links{display:flex;align-items:center;gap:clamp(6px,1.4vw,26px);}
+.nav-links a{
+  font-weight:600;font-size:14px;color:var(--ink);text-decoration:none;
+  padding:6px 2px;position:relative;white-space:nowrap;
+}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--bordo);transition:width .22s ease;}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+  font-family:'Archivo';font-weight:800;font-size:14px;letter-spacing:.5px;
+  background:var(--bordo);color:#fff;border:3px solid var(--ink);
+  padding:11px 22px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);
+  transition:transform .12s ease,box-shadow .12s ease;
+}
+.nav-cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
+.nav-cta:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
+.burger span{width:26px;height:3px;background:var(--ink);display:block;}
+
+/* ───────── HERO ───────── */
+.hero{
+  max-width:1340px;margin:0 auto;
+  padding:clamp(36px,5vw,72px) clamp(18px,4vw,56px) clamp(28px,4vw,56px);
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,64px);
+  align-items:center;position:relative;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:700;color:var(--bordo);
+  border:3px solid var(--ink);background:var(--paper);
+  padding:7px 14px;box-shadow:var(--shadow-sm);margin-bottom:26px;
+}
+.hero-eyebrow .dot{width:9px;height:9px;background:var(--orange);border-radius:50%;}
+.hero h1{
+  font-weight:900;font-size:clamp(44px,6.4vw,92px);line-height:.94;
+  letter-spacing:-2.5px;color:var(--bordo);text-transform:uppercase;
+  text-wrap:balance;
+}
+.hero h1 .ink{color:var(--ink);}
+.hero h1 .mark{
+  position:relative;display:inline-block;color:var(--ink);
+}
+.hero h1 .mark::after{
+  content:'';position:absolute;left:-2px;right:-4px;bottom:6px;height:.22em;
+  background:var(--orange);z-index:-1;
+}
+.hero-sub{
+  font-size:clamp(16px,1.25vw,19px);color:var(--muted);
+  max-width:480px;margin:26px 0 34px;font-weight:500;line-height:1.7;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;align-items:center;}
+.btn{
+  font-family:'Archivo';font-weight:800;font-size:16px;letter-spacing:.3px;
+  border:3px solid var(--ink);padding:15px 30px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:transform .12s ease,box-shadow .12s ease;
+}
+.btn-primary{background:var(--bordo);color:#fff;box-shadow:var(--shadow);}
+.btn-primary:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--bordo);}
+.btn-primary:active{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--bordo);}
+.btn-ghost{background:var(--paper);color:var(--ink);box-shadow:var(--shadow-ink);}
+.btn-ghost:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--ink);}
+.btn-ghost:active{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink);}
+.btn .arr{font-size:18px;line-height:1;}
+
+.hero-trust{display:flex;align-items:center;gap:14px;margin-top:30px;flex-wrap:wrap;}
+.avatars{display:flex;}
+.avatars span{
+  width:38px;height:38px;border-radius:50%;border:3px solid var(--ink);
+  margin-left:-12px;background:var(--bordo);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;font-size:13px;
+}
+.avatars span:first-child{margin-left:0;}
+.avatars span:nth-child(2){background:var(--orange);color:var(--ink);}
+.avatars span:nth-child(3){background:var(--ink);}
+.avatars span:nth-child(4){background:var(--bordo-deep);}
+.hero-trust small{font-size:13px;color:var(--muted);font-weight:600;line-height:1.4;}
+.hero-trust small b{color:var(--ink);display:block;font-size:14px;}
+
+/* hero visual */
+.hero-visual{position:relative;}
+.hero-frame{
+  border:4px solid var(--ink);box-shadow:14px 14px 0 var(--bordo);
+  background:var(--paper);position:relative;
+}
+.hero-frame image-slot{display:block;width:100%;height:clamp(360px,42vw,520px);}
+.badge{
+  position:absolute;z-index:3;
+  font-weight:900;border:3px solid var(--ink);
+  padding:12px 16px;line-height:1.1;text-align:center;
+}
+.badge-1{
+  top:-26px;right:-18px;background:var(--orange);color:var(--ink);
+  box-shadow:5px 5px 0 var(--ink);transform:rotate(5deg);
+}
+.badge-1 .big{font-size:30px;display:block;}
+.badge-1 .sm{display:block;margin-top:5px;font-family:'Space Mono';font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;line-height:1.2;}
+.badge-2{
+  bottom:-24px;left:-22px;background:var(--bordo);color:#fff;
+  box-shadow:5px 5px 0 var(--orange);transform:rotate(-4deg);
+  display:flex;align-items:center;gap:10px;padding:14px 18px;
+}
+.badge-2 .big{font-size:26px;}
+.badge-2 .txt{font-family:'Space Mono';font-size:11px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;text-align:left;line-height:1.3;}
+
+/* decorative brutalist marks */
+.deco-star{position:absolute;color:var(--orange);font-size:42px;z-index:4;pointer-events:none;}
+
+/* ───────── STATS ───────── */
+.stats{
+  max-width:1340px;margin:clamp(20px,3vw,40px) auto 0;
+  padding:0 clamp(18px,4vw,56px) clamp(36px,5vw,64px);
+}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:4px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);
+}
+.stat{
+  padding:clamp(22px,2.6vw,34px) clamp(16px,2vw,28px);
+  border-right:3px solid var(--ink);
+}
+.stat:last-child{border-right:none;}
+.stat-num{font-weight:900;font-size:clamp(38px,4.4vw,60px);line-height:.9;color:var(--bordo);letter-spacing:-2px;}
+.stat-num .accent{color:var(--orange);}
+.stat-label{font-family:'Space Mono';font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:10px;font-weight:700;}
+
+/* ───────── PROGRAMS ───────── */
+.programs{max-width:1340px;margin:0 auto;padding:clamp(20px,3vw,40px) clamp(18px,4vw,56px) clamp(56px,7vw,100px);}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(28px,3vw,46px);flex-wrap:wrap;}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--bordo);margin-bottom:14px;}
+.sec-tag::before{content:'';width:22px;height:3px;background:var(--orange);}
+.sec-head h2{font-weight:900;font-size:clamp(30px,3.6vw,52px);line-height:1;letter-spacing:-1.5px;text-transform:uppercase;color:var(--ink);}
+.sec-head h2 em{font-style:normal;color:var(--bordo);}
+.sec-head p{color:var(--muted);font-weight:500;max-width:380px;font-size:15px;}
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,28px);}
+.prog{
+  background:var(--paper);border:3px solid var(--ink);box-shadow:var(--shadow);
+  padding:clamp(22px,2.4vw,32px);cursor:pointer;
+  transition:transform .14s ease,box-shadow .14s ease;
+  display:flex;flex-direction:column;
+}
+.prog:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--bordo);}
+.prog-ico{
+  width:54px;height:54px;border:3px solid var(--ink);background:var(--bone);
+  display:flex;align-items:center;justify-content:center;font-size:26px;
+  margin-bottom:20px;box-shadow:3px 3px 0 var(--orange);
+}
+.prog:nth-child(2) .prog-ico{box-shadow:3px 3px 0 var(--bordo);}
+.prog h3{font-weight:900;font-size:22px;letter-spacing:-.5px;margin-bottom:10px;}
+.prog p{color:var(--muted);font-size:14.5px;font-weight:500;line-height:1.6;margin-bottom:20px;}
+.prog-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;border-top:3px solid var(--ink);padding-top:16px;}
+.prog-foot .tag{font-family:'Space Mono';font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--bordo);}
+.prog-foot .go{
+  width:36px;height:36px;border:3px solid var(--ink);background:var(--bordo);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;
+  transition:background .15s ease;
+}
+.prog:hover .prog-foot .go{background:var(--orange);color:var(--ink);}
+
+/* ───────── CTA BAND ───────── */
+.band{
+  max-width:1340px;margin:0 auto clamp(48px,6vw,80px);
+  padding:0 clamp(18px,4vw,56px);
+}
+.band-in{
+  background:var(--bordo);border:4px solid var(--ink);box-shadow:12px 12px 0 var(--ink);
+  padding:clamp(34px,4.5vw,64px);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;
+}
+.band-in::before{
+  content:'';position:absolute;right:-60px;top:-60px;width:240px;height:240px;
+  border:30px solid rgba(255,107,61,.55);border-radius:50%;
+}
+.band-txt{position:relative;z-index:2;max-width:620px;}
+.band-txt .label{color:var(--orange);font-size:12px;font-weight:700;}
+.band-txt h2{color:#fff;font-weight:900;font-size:clamp(26px,3.4vw,46px);line-height:1.02;letter-spacing:-1px;text-transform:uppercase;margin-top:12px;text-wrap:balance;}
+.band .btn{position:relative;z-index:2;}
+.btn-orange{background:var(--orange);color:var(--ink);box-shadow:6px 6px 0 var(--ink);border-color:var(--ink);}
+.btn-orange:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--ink);}
+.btn-orange:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink);}
+
+/* ───────── RESPONSIVE ───────── */
+@media(max-width:980px){
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  .hero{grid-template-columns:1fr;gap:48px;}
+  .hero-visual{order:-1;max-width:560px;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .stat:nth-child(2){border-right:none;}
+  .stat:nth-child(1),.stat:nth-child(2){border-bottom:3px solid var(--ink);}
+  .prog-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:620px){
+  .hero h1{letter-spacing:-1.5px;}
+  .stats-grid{grid-template-columns:1fr;}
+  .stat{border-right:none;border-bottom:3px solid var(--ink);}
+  .stat:last-child{border-bottom:none;}
+  .prog-grid{grid-template-columns:1fr;}
+  .band-in{padding:28px;}
+  .badge-1{right:-6px;top:-18px;}
+  .badge-2{left:-6px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ───────── NAV ───────── -->
+<header class="nav">
+  <div class="nav-in">
+    <div class="brand">
+      <div class="brand-mark">K</div>
+      <div>
+        <div class="brand-name">KADRO<b>kurs</b></div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Kurumsal</a>
+      <a href="#programlar">Programlar</a>
+      <a href="#">Başarılarımız</a>
+      <a href="#">Blog</a>
+      <a href="#">Şubelerimiz</a>
+      <a href="#">İletişim</a>
+    </nav>
+    <button class="nav-cta">BAŞVUR →</button>
+    <button class="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-eyebrow"><span class="dot"></span><span class="label">2026 KAYITLARI AÇILDI</span></div>
+    <h1>SINIRLARI <span class="ink">KALDIR,</span><br><span class="mark">GELECEĞİNİ</span><br>AYDINLAT</h1>
+    <p class="hero-sub">Alanında uzman eğitmenler, kişiye özel çalışma programları ve kanıtlanmış başarı yöntemiyle hedeflediğin üniversiteye bir adım daha yaklaş.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary">ÜCRETSİZ DENEME DERSİ <span class="arr">→</span></button>
+      <button class="btn btn-ghost">PROGRAMLARI İNCELE</button>
+    </div>
+    <div class="hero-trust">
+      <div class="avatars"><span>A</span><span>B</span><span>C</span><span>+</span></div>
+      <small><b>3.200+ öğrenci</b> KADROkurs'u tercih etti</small>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="deco-star" style="top:-30px;left:-14px;">✦</div>
+    <div class="hero-frame">
+      <image-slot id="hero-main" shape="rect" placeholder="Aydınlık, enerjik öğrenci fotoğrafını buraya sürükle" fit="cover"></image-slot>
+    </div>
+    <div class="badge badge-1">
+      <span class="big">%98</span>
+      <span class="sm">Hedefe ulaşma</span>
+    </div>
+    <div class="badge badge-2">
+      <span class="big">★</span>
+      <span class="txt">Türkiye'de<br>1. sırada</span>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── STATS ───────── -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat"><div class="stat-num">24<span class="accent">+</span></div><div class="stat-label">Yıllık tecrübe</div></div>
+    <div class="stat"><div class="stat-num">3.2<span class="accent">B</span></div><div class="stat-label">Mezun öğrenci</div></div>
+    <div class="stat"><div class="stat-num">%98</div><div class="stat-label">Yerleşme oranı</div></div>
+    <div class="stat"><div class="stat-num">12</div><div class="stat-label">Şube & kampüs</div></div>
+  </div>
+</section>
+
+<!-- ───────── PROGRAMS ───────── -->
+<section class="programs" id="programlar">
+  <div class="sec-head">
+    <div>
+      <div class="sec-tag">PROGRAMLAR</div>
+      <h2>SANA UYGUN <em>YOLU SEÇ</em></h2>
+    </div>
+    <p>Her hedefe ve her tempoya göre tasarlanmış, sonuç odaklı eğitim programları.</p>
+  </div>
+  <div class="prog-grid">
+    <div class="prog">
+      <div class="prog-ico">🎯</div>
+      <h3>TYT / AYT Hazırlık</h3>
+      <p>Konu anlatımı, soru kampı ve birebir koçluk ile sınava tam donanımlı gir.</p>
+      <div class="prog-foot"><span class="tag">12. SINIF & MEZUN</span><span class="go">→</span></div>
+    </div>
+    <div class="prog">
+      <div class="prog-ico">📐</div>
+      <h3>LGS Hazırlık</h3>
+      <p>Ortaokul öğrencileri için kademeli ilerleyen, sınav formatına birebir uyumlu program.</p>
+      <div class="prog-foot"><span class="tag">7 & 8. SINIF</span><span class="go">→</span></div>
+    </div>
+    <div class="prog">
+      <div class="prog-ico">💡</div>
+      <h3>Birebir Koçluk</h3>
+      <p>Kişiye özel çalışma planı, haftalık takip ve motivasyon desteği ile yanındayız.</p>
+      <div class="prog-foot"><span class="tag">TÜM SEVİYELER</span><span class="go">→</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CTA BAND ───────── -->
+<section class="band">
+  <div class="band-in">
+    <div class="band-txt">
+      <span class="label">SON KONTENJANLAR</span>
+      <h2>Geleceğini şansa bırakma. Yerini bugün ayırt.</h2>
+    </div>
+    <button class="btn btn-orange">HEMEN BAŞVUR <span class="arr">→</span></button>
+  </div>
+</section>
+
+</body>
+</html>
