@@ -94,8 +94,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--ivory
 .vib-vis .vt.b::before{background:var(--bordo);}
 .vib-vis .vt.g::before{background:var(--gold);}
 
-/* card 5 — Classic (current) */
-.c-classic{background:linear-gradient(160deg,#8A2222 0%,var(--bordo) 38%,#3D0E0E 100%);color:#fff;border-radius:2px;box-shadow:0 4px 14px rgba(61,14,14,.22),0 24px 52px rgba(61,14,14,.3);}
+/* card 5 — Classic (current) */.c-classic{background:linear-gradient(160deg,#8A2222 0%,var(--bordo) 38%,#3D0E0E 100%);color:#fff;border-radius:2px;box-shadow:0 4px 14px rgba(61,14,14,.22),0 24px 52px rgba(61,14,14,.3);}
 .c-classic:hover{transform:translateY(-5px);box-shadow:0 10px 22px rgba(61,14,14,.28),0 32px 66px rgba(61,14,14,.38);}
 .c-classic .num{color:rgba(232,196,122,.85);}
 .c-classic .ctitle{font-family:'Playfair Display',serif;font-weight:700;color:#fff;}
@@ -116,6 +115,16 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--ivory
 .min-vis .mh em{font-style:italic;}
 .min-vis .ml{height:1px;background:var(--hair);margin:16px 0;}
 .min-vis .mpill{display:inline-block;background:var(--bordo);color:#fff;font-size:11px;font-weight:600;padding:7px 16px;border-radius:999px;}
+
+/* card 6 — Hibrit Bento */
+.c-hibrit{background:#fff;border:2.5px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--ink);}
+.c-hibrit:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink);}
+.c-hibrit .ctitle{color:var(--bordo);}
+.c-hibrit .go{color:#E8440A;}
+.hib-vis{display:grid;grid-template-columns:1.3fr 1fr;gap:8px;width:100%;}
+.hib-vis .hbig{min-height:78px;border-radius:8px;background:#7B1C2C;border:2px solid var(--ink);box-shadow:3px 3px 0 #E8440A;}
+.hib-vis .hcol{display:flex;flex-direction:column;gap:8px;}
+.hib-vis .hsm{flex:1;min-height:35px;border-radius:8px;background:#F5F5F5;border:2px solid var(--ink);}
 
 /* footer */
 .foot{margin-top:clamp(40px,6vh,64px);padding-top:24px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--faint);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
@@ -192,6 +201,20 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--ivory
       </div>
       <div class="ctitle">Soft Brutalism</div>
       <div class="cdesc">Bembeyaz zemin, dev başlıklar, keskin çerçeveler ve sert gölgeler. Enerjik turuncu vurgu.</div>
+      <span class="go">Önizle <span class="arr">→</span></span>
+    </a>
+
+    <!-- 05 Hibrit Bento -->
+    <a class="card c-hibrit" href="Hero Hibrit.html">
+      <span class="num">05 — HİBRİT</span>
+      <div class="preview">
+        <div class="hib-vis">
+          <div class="hbig"></div>
+          <div class="hcol"><div class="hsm"></div><div class="hsm"></div></div>
+        </div>
+      </div>
+      <div class="ctitle">Hibrit Bento</div>
+      <div class="cdesc">Apple sakinliği + Brutalist enerji. Bento grid, offset gölgeler, turuncu CTA.</div>
       <span class="go">Önizle <span class="arr">→</span></span>
     </a>
 
